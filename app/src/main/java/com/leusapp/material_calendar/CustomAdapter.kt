@@ -1,9 +1,11 @@
-package com.leusapp.material_calendarview
+package com.leusapp.material_calendar
 
 import android.content.Context
 import android.view.View
+import com.leusapp.material_calendarview.CalendarAdapter
+import com.leusapp.material_calendarview.OneDayDate
 
-class CustomAdapter : CalendarAdapter{
+class CustomAdapter : CalendarAdapter {
 
     var i = 0
     var itemPressed = 0

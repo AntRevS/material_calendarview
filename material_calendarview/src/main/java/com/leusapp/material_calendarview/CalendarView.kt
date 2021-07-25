@@ -35,14 +35,24 @@ class CalendarView : FrameLayout, View.OnClickListener {
 
     private lateinit var weekDayList: ArrayList<TextView>
 
-    private lateinit var navigationListener : OnNavigationButtonClick
+    private var navigationListener : OnNavigationButtonClick? = null
 
     companion object{
         val MONTH_INCREMENT = 0
         val MONTH_DECREMENT = 1
+
+        val LANG_RU = "ru"
+        val LANG_EN = "en"
     }
 
     constructor(context: Context) : super(context) {
+        titleColor = R.color.colorAccent
+        calendBackColor = R.color.white
+        calendarLayoutColor = R.color.white
+        colorDateText = R.color.gray
+        colorWeekBar = R.color.gray
+        sizeDateText = 18F
+
         init()
     }
 
@@ -192,14 +202,21 @@ class CalendarView : FrameLayout, View.OnClickListener {
         return dateManager.getArrayMonthCalendar(realDateManager.getMonth(), realDateManager.getYear())
     }
 
+    fun setDateTextLang(lang: String){
+        this.lang = lang
+        initLang()
+    }
+
     override fun onClick(v: View?) {
         if (v != null) {
             when (v.id) {
                 R.id.btnDateRight -> {
                     when(customAdapterFlag){
                         true -> {
-                            realDateManager.refreshDate(RealDateManager.MONTH_INCREMENT)
-                            navigationListener.navigationClick()
+                            if(navigationListener != null){
+                                realDateManager.refreshDate(RealDateManager.MONTH_INCREMENT)
+                                navigationListener!!.navigationClick()
+                            }
                         }
                         false -> {
                             realDateManager.refreshDate(RealDateManager.MONTH_INCREMENT)
@@ -211,8 +228,10 @@ class CalendarView : FrameLayout, View.OnClickListener {
                 R.id.btnDateLeft -> {
                     when(customAdapterFlag){
                         true -> {
-                            realDateManager.refreshDate(RealDateManager.MONTH_DECREMENT)
-                            navigationListener.navigationClick()
+                            if(navigationListener != null){
+                                realDateManager.refreshDate(RealDateManager.MONTH_DECREMENT)
+                                navigationListener!!.navigationClick()
+                            }
                         }
                         false -> {
                             realDateManager.refreshDate(RealDateManager.MONTH_DECREMENT)
