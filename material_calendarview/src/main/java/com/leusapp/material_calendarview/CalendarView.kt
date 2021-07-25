@@ -2,16 +2,10 @@ package com.leusapp.material_calendarview
 
 import android.content.Context
 import android.content.res.TypedArray
-import android.graphics.Color
 import android.util.AttributeSet
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
-import androidx.core.content.ContextCompat
-import com.example.calculate_pay.datemanagers.DateManager
-import com.example.calculate_pay.datemanagers.RealDateManager
-import com.example.calculate_pay.unit.OneDayDate
 import java.lang.ClassCastException
 
 
