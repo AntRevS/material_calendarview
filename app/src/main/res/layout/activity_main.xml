@@ -11,6 +11,6 @@
         android:id="@+id/calendar"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        app:lang="ru">
+        app:lang="en">
     </com.leusapp.material_calendarview.CalendarView>
 </LinearLayout>
