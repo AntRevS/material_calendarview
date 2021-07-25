@@ -45,6 +45,39 @@ class CustomAdapter : CalendarAdapter {
         i++
     }
 }
+```  
+Activity  
+  
+```kotlin
+  class MainActivity : FragmentActivity(), CalendarAdapter.OnCalendarItemListener, CalendarView.OnNavigationButtonClick {
+
+    lateinit var calendar: CalendarView
+    val TAG = "myLogs"
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        calendar = findViewById(R.id.calendar)
+        initAdapter()
+    }
+
+    
+    private fun initAdapter(){
+        calendar.setCustomAdapter(
+            CustomAdapter(this, calendar.getArrayCalendar(), R.drawable.material_style_btn, R.drawable.material_item_pressed)
+        )
+        calendar.notifyCustomAdapter()
+    }
+
+    override fun onItemClick(day: OneDayDate) {
+        Log.d(TAG, "${day.day} ${day.month} ${day.year}")
+    }
+
+    override fun navigationClick() {
+        initAdapter()
+    }
+}
 ```
   
 ## Integration
