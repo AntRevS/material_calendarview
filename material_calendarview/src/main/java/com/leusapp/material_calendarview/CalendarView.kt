@@ -1,4 +1,4 @@
-package com.leusapp.material_calendar
+package com.leusapp.material_calendarview
 
 import android.content.Context
 import android.content.res.TypedArray

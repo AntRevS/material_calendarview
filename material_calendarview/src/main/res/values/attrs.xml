@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CalendarView">
+        <attr name="lang" format="string"/>
+        <attr name="item_day" format="reference"/>
+        <attr name="color_title" format="color"/>
+        <attr name="calendar_backcolor" format="color"/>
+        <attr name="calendar_layout_color" format="color"/>
+        <attr name="color_date_text" format="color"/>
+        <attr name="size_date_text" format="dimension"/>
+        <attr name="color_week_bar" format="color"/>
+    </declare-styleable>
+</resources>

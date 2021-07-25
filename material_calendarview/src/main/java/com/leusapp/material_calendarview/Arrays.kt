@@ -1,4 +1,4 @@
-package com.leusapp.material_calendar
+package com.leusapp.material_calendarview
 
 class Arrays {
 

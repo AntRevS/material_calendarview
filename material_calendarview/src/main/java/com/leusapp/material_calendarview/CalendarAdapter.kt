@@ -1,15 +1,12 @@
-package com.leusapp.material_calendar
+package com.leusapp.material_calendarview
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.Button
 import android.widget.TextView
-import com.example.calculate_pay.unit.OneDayDate
 
 open class CalendarAdapter : BaseAdapter, View.OnTouchListener, CalendarAdapterBase {
 

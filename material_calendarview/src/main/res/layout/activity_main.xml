@@ -7,10 +7,10 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <com.leusapp.material_calendarview.CalendarView
+    <com.leusapp.material_calendar.CalendarView
         android:id="@+id/calendar"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         app:lang="en">
-    </com.leusapp.material_calendarview.CalendarView>
+    </com.leusapp.material_calendar.CalendarView>
 </LinearLayout>

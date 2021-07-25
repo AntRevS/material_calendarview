@@ -1,7 +1,6 @@
-package com.example.calculate_pay.datemanagers
+package com.leusapp.material_calendarview
 
 import android.util.Log
-import com.example.calculate_pay.unit.OneDayDate
 import java.util.*
 
 class DateManager {

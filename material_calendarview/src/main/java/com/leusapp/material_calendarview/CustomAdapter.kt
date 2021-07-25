@@ -1,8 +1,7 @@
-package com.leusapp.material_calendar
+package com.leusapp.material_calendarview
 
 import android.content.Context
 import android.view.View
-import com.example.calculate_pay.unit.OneDayDate
 
 class CustomAdapter : CalendarAdapter{
 

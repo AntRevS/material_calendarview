@@ -1,2 +1,3 @@
+include ':material_calendarview'
 include ':app'
 rootProject.name = "material_calendar"

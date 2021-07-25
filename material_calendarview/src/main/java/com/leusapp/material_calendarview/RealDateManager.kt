@@ -1,4 +1,4 @@
-package com.example.calculate_pay.datemanagers
+package com.leusapp.material_calendarview
 
 class RealDateManager {
 
