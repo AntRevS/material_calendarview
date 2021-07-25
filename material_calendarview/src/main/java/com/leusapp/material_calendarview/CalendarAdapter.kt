@@ -19,7 +19,7 @@ open class CalendarAdapter : BaseAdapter, View.OnTouchListener, CalendarAdapterB
     var days: Array<OneDayDate>
     private var item: Int = 0
     private var itemPressed: Int = 0
-    var calendarItemListener: OnCalendarItemListener
+    var calendarItemListener: OnCalendarItemListener? = null
 
     constructor(ctx: Context, days: Array<OneDayDate>, item: Int, itemPressed: Int) : super() {
         this.ctx = ctx
@@ -27,7 +27,11 @@ open class CalendarAdapter : BaseAdapter, View.OnTouchListener, CalendarAdapterB
         this.item = item
         this.itemPressed = itemPressed
         inflater = ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        calendarItemListener = ctx as OnCalendarItemListener
+        try {
+            calendarItemListener = ctx as OnCalendarItemListener
+        }catch (e: ClassCastException){
+            //...
+        }
     }
 
 
@@ -73,8 +77,10 @@ open class CalendarAdapter : BaseAdapter, View.OnTouchListener, CalendarAdapterB
         if(v != null && event != null){
             when(event.action){
                 MotionEvent.ACTION_UP -> {
-                    var temp: OneDayDate = getDay(v.getTag() as Int)
-                    calendarItemListener.onItemClick(temp)
+                    if(calendarItemListener != null) {
+                        var temp: OneDayDate = getDay(v.getTag() as Int)
+                        calendarItemListener!!.onItemClick(temp)
+                    }
                 }
             }
         }

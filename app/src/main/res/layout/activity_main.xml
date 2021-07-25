@@ -8,9 +8,8 @@
     tools:context=".MainActivity">
 
     <com.leusapp.material_calendarview.CalendarView
-        android:id="@+id/calendar"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        app:lang="en">
+        app:lang="ru">
     </com.leusapp.material_calendarview.CalendarView>
 </LinearLayout>
