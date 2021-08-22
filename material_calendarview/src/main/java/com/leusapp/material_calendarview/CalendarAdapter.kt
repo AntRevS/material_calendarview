@@ -5,72 +5,60 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.TextView
+import android.widget.Button
+import androidx.recyclerview.widget.RecyclerView
 
-open class CalendarAdapter : BaseAdapter, View.OnTouchListener, CalendarAdapterBase {
+open class CalendarAdapter(
+    val ctx: Context,
+    val days: Array<OneDayDate>,
+    val item:Int,
+    val itemPressed:Int
+) : CalendarAdapterBase, View.OnTouchListener, RecyclerView.Adapter<CalendarAdapter.CalendarViewHolder>() {
 
-    interface OnCalendarItemListener {
-        fun onItemClick(day: OneDayDate)
+    var calendarItemListener: OnCalendarItemListener? = null
+    var inflater: LayoutInflater
+
+    interface OnCalendarItemListener{
+        fun onCalendarItemClick(day: OneDayDate)
     }
 
-    var ctx: Context
-    var inflater: LayoutInflater
-    var days: Array<OneDayDate>
-    private var item: Int = 0
-    private var itemPressed: Int = 0
-    var calendarItemListener: OnCalendarItemListener? = null
-
-    constructor(ctx: Context, days: Array<OneDayDate>, item: Int, itemPressed: Int) : super() {
-        this.ctx = ctx
-        this.days = days
-        this.item = item
-        this.itemPressed = itemPressed
+    init {
         inflater = ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        try {
+        try{
             calendarItemListener = ctx as OnCalendarItemListener
         }catch (e: ClassCastException){
-            //...
+            throw ClassCastException(CalendarAdapter::class.java.simpleName + " must implement OnCalendarItemListener")
         }
     }
 
+    inner class CalendarViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
-        var view = convertView as TextView?
-        var day: OneDayDate = getDay(position)
-        if (view == null) {
-            view = inflater.inflate(R.layout.material_day, parent, false) as TextView
+        var day: Button
+
+        init {
+            this.day = itemView as Button
         }
 
-
-        if (view != null) {
-            view.text = day.day.toString()
-            view.tag = position
-            view.setOnTouchListener(this)
-            view.setBackgroundResource(item)
-        }
-
-        checkExistAndSwap(view, day)
-
-        return view
     }
 
-
-
-    override fun getItem(position: Int): Any {
-        return days.get(position)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarViewHolder {
+        var itemView = inflater.inflate(R.layout.material_day, parent, false)
+        return CalendarViewHolder(itemView)
     }
 
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
+    override fun onBindViewHolder(holder: CalendarViewHolder, position: Int) {
+        holder.day.text = getItem(position).day.toString()
+        checkExistAndSwap(holder.day, getItem(position))
     }
 
-    override fun getCount(): Int {
-        return days.size
+    override fun getItemCount() = days.size
+
+    override fun checkExistAndSwap(v: View, day: OneDayDate) {
+
     }
 
-    private fun getDay(position: Int): OneDayDate {
-        return days.get(position)
+    private fun getItem(position: Int): OneDayDate{
+        return days[position]
     }
 
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
@@ -78,8 +66,8 @@ open class CalendarAdapter : BaseAdapter, View.OnTouchListener, CalendarAdapterB
             when(event.action){
                 MotionEvent.ACTION_UP -> {
                     if(calendarItemListener != null) {
-                        var temp: OneDayDate = getDay(v.getTag() as Int)
-                        calendarItemListener!!.onItemClick(temp)
+                        var temp: OneDayDate = getItem(v.getTag() as Int)
+                        calendarItemListener!!.onCalendarItemClick(temp)
                     }
                 }
             }
@@ -87,8 +75,5 @@ open class CalendarAdapter : BaseAdapter, View.OnTouchListener, CalendarAdapterB
         return false
     }
 
-    override fun checkExistAndSwap(v: View, day: OneDayDate) {
-        //...
-    }
 
 }

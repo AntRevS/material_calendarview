@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Button
-    android:id="@+id/textView"
+    android:id="@+id/material_day"
     android:layout_width="45dp"
     android:layout_height="45dp"
     android:layout_weight="1"

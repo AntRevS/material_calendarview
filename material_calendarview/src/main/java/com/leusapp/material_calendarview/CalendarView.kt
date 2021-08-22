@@ -6,6 +6,9 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import java.lang.ClassCastException
 
 
@@ -14,7 +17,7 @@ class CalendarView : FrameLayout, View.OnClickListener {
     private lateinit var textDate: TextView
     private lateinit var btnDateLeft: Button
     private lateinit var btnDateRight: Button
-    private lateinit var calendar: GridView
+    private lateinit var calendar: RecyclerView
     private lateinit var titleBar: LinearLayout
     private lateinit var calendarLayout: LinearLayout
     private lateinit var calendarAdapter: CalendarAdapter
@@ -126,6 +129,7 @@ class CalendarView : FrameLayout, View.OnClickListener {
     }
 
     private fun initAdapter() {
+        calendar.layoutManager = GridLayoutManager(context, 7)
         calendarAdapter = CalendarAdapter(
             context,
             getArrayCalendar(),
