@@ -86,7 +86,7 @@ The lib is available in maven jitpack
       }
     }
     dependencies {
-        implementation 'com.github.reviakin-package:material_calendarview:1.3.4'
+        implementation 'com.github.reviakin-package:material_calendarview:2.0.0'
     }
 ```  
   
