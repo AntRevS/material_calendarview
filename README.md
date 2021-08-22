@@ -28,14 +28,10 @@ Other attributes
 Example custom adapter for swap item type  
   
 ```kotlin
-class CustomAdapter : CalendarAdapter {
+class CustomAdapter(ctx: Context, days: Array<OneDayDate>, item: Int, itemPressed: Int) :
+    CalendarAdapter(ctx, days, item, itemPressed) {
 
     var i = 0
-    var itemPressed = 0
-
-    constructor(ctx: Context, days: Array<OneDayDate>, item: Int, itemPressed: Int) : super(ctx, days, item, itemPressed){
-        this.itemPressed = itemPressed
-    }
 
     override fun checkExistAndSwap(v: View, day: OneDayDate) {
         super.checkExistAndSwap(v, day)
