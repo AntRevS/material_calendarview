@@ -1,7 +1,7 @@
 ## Calendar View  
 Android material calendar view  
   
-![hippo](https://github.com/reviakin-package/material_calendarview/blob/main/app/src/main/res/raw/calendar_work.gif)
+![hippo](app/src/main/res/raw/calendar_work.gif)
   
 ## Usage
 ```xml
